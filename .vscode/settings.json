@@ -1,0 +1,7 @@
+{
+    "search.defaultViewMode": "list",
+    "scm.defaultViewMode": "list",
+    "dart.flutterOutline": true,
+    "dart.previewFlutterUiGuidesCustomTracking": true,
+    "dart.previewFlutterUiGuides": true
+}

@@ -85,7 +85,7 @@ class GetInformation extends StatelessWidget {
             ],
           ),
           Text(
-            "${price} сум",
+            "$price сум",
             style: const TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold,

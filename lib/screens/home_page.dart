@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:olx_app/models/card_models.dart';
 import 'package:olx_app/screens/galery_view.dart';
 import 'package:olx_app/screens/list_view.dart';
 import 'package:olx_app/screens/tile_view.dart';
-import 'package:olx_app/widgets/picture_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,7 +14,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final _controller = TextEditingController();
+  String? word;
   int _currentIndex = 1;
+  List<ImageModel> searchList = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,6 +79,42 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
+              TextField(
+                controller: _controller,
+                onChanged: (value) {
+                  word = value;
+                  print(_controller.text);
+                  items.forEach(
+                    (index) {
+                      if (index.title
+                          .toLowerCase()
+                          .startsWith(word!.toLowerCase())) {
+                        if (!searchList.contains(index)) {
+                          searchList.add(index);
+                          for (int i = 0; i < searchList.length; i++) {
+                            if (!searchList[i]
+                                .title
+                                .toLowerCase()
+                                .startsWith(word!.toLowerCase())) {
+                              searchList.remove(searchList[i]);
+                            }
+                          }
+                        }
+                      }
+                    },
+                  );
+
+                  if (word == "") {
+                    searchList.clear();
+                  }
+                  // print(word);
+                  print(searchList);
+                  setState(() {});
+                },
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    suffixIcon: Icon(CupertinoIcons.heart)),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -192,10 +230,16 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               _currentIndex == 1
-                  ? const GaleryView()
+                  ? GaleryView(
+                      searchList: searchList,
+                    )
                   : _currentIndex == 2
-                      ? const ListViewPage()
-                      : const TileView(),
+                      ? ListViewPage(
+                          searchList: searchList,
+                        )
+                      : TileView(
+                          searchList: searchList,
+                        ),
             ],
           ),
         ),

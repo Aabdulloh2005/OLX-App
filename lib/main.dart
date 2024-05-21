@@ -13,7 +13,7 @@ class MainRunner extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.light(useMaterial3: false),
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
