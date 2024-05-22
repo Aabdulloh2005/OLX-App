@@ -18,6 +18,12 @@ class _HomePageState extends State<HomePage> {
   String? word;
   int _currentIndex = 1;
   List<ImageModel> searchList = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    searchList = items;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,31 +90,15 @@ class _HomePageState extends State<HomePage> {
                 onChanged: (value) {
                   word = value;
                   print(_controller.text);
-                  items.forEach(
-                    (index) {
-                      if (index.title
-                          .toLowerCase()
-                          .startsWith(word!.toLowerCase())) {
-                        if (!searchList.contains(index)) {
-                          searchList.add(index);
-                          for (int i = 0; i < searchList.length; i++) {
-                            if (!searchList[i]
-                                .title
-                                .toLowerCase()
-                                .startsWith(word!.toLowerCase())) {
-                              searchList.remove(searchList[i]);
-                            }
-                          }
-                        }
-                      }
-                    },
-                  );
 
-                  if (word == "") {
-                    searchList.clear();
-                  }
-                  // print(word);
-                  print(searchList);
+                  searchList = items.where(
+                    (element) {
+                      return element.title
+                          .toLowerCase()
+                          .contains(word!.toLowerCase());
+                    },
+                  ).toList();
+
                   setState(() {});
                 },
                 decoration: const InputDecoration(

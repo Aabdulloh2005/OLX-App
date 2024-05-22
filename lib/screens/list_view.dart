@@ -10,67 +10,36 @@ class ListViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: searchList.isEmpty
-          ? ListView.builder(
-              itemCount: items.length,
-              itemBuilder: (context, i) {
-                return Card(
-                  clipBehavior: Clip.hardEdge,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: GetPicture(
-                          height: 180,
-                          url: items[i].url,
-                          checkTop: items[i].checkTop,
-                        ),
-                      ),
-                      Expanded(
-                        flex: 4,
-                        child: GetInformation(
-                            title: items[i].title,
-                            price: items[i].price,
-                            checkStatus: items[i].checkStatus,
-                            location: items[i].location,
-                            time: items[i].time),
-                      )
-                    ],
+      child: ListView.builder(
+        itemCount: searchList.length,
+        itemBuilder: (context, i) {
+          return Card(
+            clipBehavior: Clip.hardEdge,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: GetPicture(
+                    height: 180,
+                    url: searchList[i].url,
+                    checkTop: searchList[i].checkTop,
                   ),
-                );
-              },
-            )
-          : ListView.builder(
-              itemCount: searchList.length,
-              itemBuilder: (context, i) {
-                return Card(
-                  clipBehavior: Clip.hardEdge,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: GetPicture(
-                          height: 180,
-                          url: searchList[i].url,
-                          checkTop: searchList[i].checkTop,
-                        ),
-                      ),
-                      Expanded(
-                        flex: 4,
-                        child: GetInformation(
-                            title: searchList[i].title,
-                            price: searchList[i].price,
-                            checkStatus: searchList[i].checkStatus,
-                            location: searchList[i].location,
-                            time: searchList[i].time),
-                      )
-                    ],
-                  ),
-                );
-              },
+                ),
+                Expanded(
+                  flex: 4,
+                  child: GetInformation(
+                      title: searchList[i].title,
+                      price: searchList[i].price,
+                      checkStatus: searchList[i].checkStatus,
+                      location: searchList[i].location,
+                      time: searchList[i].time),
+                )
+              ],
             ),
+          );
+        },
+      ),
     );
   }
 }

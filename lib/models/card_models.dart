@@ -26,7 +26,7 @@ List<ImageModel> items = [
       url:
           "https://frankfurt.apollo.olxcdn.com/v1/files/r65sp2e98f0z2-UZ/image;s=1000x700",
       checkTop: true,
-      title: "Пульт универсальный",
+      title: "Pult universal",
       price: 50000,
       checkStatus: false,
       location: "Tashkent",
@@ -45,7 +45,7 @@ List<ImageModel> items = [
       height: 250,
       url:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLfBq_o-LtO1poon63o1KCmv0tq_r8_2ls8Q&s",
-      title: "Пульт универсальный",
+      title: "Pult universal",
       checkTop: false,
       price: 60000,
       checkStatus: true,
