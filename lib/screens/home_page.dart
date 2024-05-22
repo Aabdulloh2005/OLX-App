@@ -117,7 +117,12 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          searchList = searchList.reversed.toList();
+
+                          print("bosildi");
+                          setState(() {});
+                        },
                         icon: const Icon(
                           CupertinoIcons.arrow_up_arrow_down,
                           size: 20,
@@ -216,7 +221,7 @@ class _HomePageState extends State<HomePage> {
                                 : const Icon(Icons.grid_view_outlined),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
               _currentIndex == 1
